@@ -88,7 +88,7 @@ function MainComponent() {
                 <p className="font-bold">Conseil amical :</p>
                 <p>{response.text}</p>
                 <img
-                  src=src="/zen.jpg"
+                  src=src="/zen.webp"
                   alt="Personnage animé faisant du yoga"
                   className="mt-4 w-full rounded-lg"
                 />
