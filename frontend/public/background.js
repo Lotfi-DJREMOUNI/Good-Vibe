@@ -1,0 +1,46 @@
+chrome.runtime.onInstalled.addListener(() => {
+  console.log("Extension installed.");
+});
+
+// Fonction pour faire une requête POST à ton API backend
+async function analyzeMessage(message) {
+  try {
+    console.log("Envoi de la requête à l'API avec le message:", message);
+    const response = await fetch("http://localhost:3001/api/analyzeMessage", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: message }),
+    });
+
+    const data = await response.json();
+    console.log("Réponse de l'API:", data);
+    return data;
+  } catch (error) {
+    console.error("Erreur lors de la requête à l'API:", error);
+    return { error: "Erreur lors de la requête à l'API." };
+  }
+}
+
+// Fonction pour envoyer une réponse au popup directement depuis le background
+function sendMessageToBackground() {
+  const textarea = document.querySelector("textarea[name='message']");
+  if (!textarea) return;
+
+  const message = textarea.value;
+  console.log("Envoi du message au background:", message);
+  
+  analyzeMessage(message).then((response) => {
+    console.log("Réponse reçue:", response);
+    if (response && response.improvedMessage) {
+      alert("Message analysé: " + response.improvedMessage);
+    } else {
+      alert("Erreur lors de l'analyse du message.");
+    }
+  }).catch((error) => {
+    console.error("Erreur:", error);
+    alert("Erreur lors de l'analyse du message.");
+  });
+}
+  
