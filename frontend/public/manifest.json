@@ -1,15 +1,17 @@
 {
   "manifest_version": 3,
-  "name": "Next.js Chrome Extension",
+  "name": "PWA",
   "version": "1.0",
-  "description": "Une extension Chrome intégrant un projet Next.js.",
+  "start_url": "/",
+  "display": "standalone",
+  "description": "Une extension Chrome intÃ©grant un projet Next.js.",
   "action": {
     "default_popup": "index.html"
   },
   "permissions": ["storage", "activeTab", "scripting"],
   "host_permissions": ["http://127.0.0.1:3001/*"],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "service_worker.js"
   },
   "web_accessible_resources": [
     {
