@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ExpressYourselfInputBox from "@/components/express-yourself-input-box";
 import NewComponent from "@/components/new-component";
 
@@ -7,6 +7,21 @@ function MainComponent() {
   const [message, setMessage] = useState("");
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
+
+   useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then(registration => {
+            console.log("Service Worker enregistré avec succès : ", registration.scope);
+          })
+          .catch(error => {
+            console.log("Erreur lors de l'enregistrement du Service Worker : ", error);
+          });
+      });
+    }
+  }, []);
 
   // Fonction pour appeler le backend local
   const checkMessage = async () => {
