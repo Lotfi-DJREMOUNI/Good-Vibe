@@ -10,7 +10,7 @@ app.use(express.json());
 
 
 const openai = new OpenAI({
-  apiKey: "sk-NmqIHB-OmJJgIXmAf7iSQW2V8HuoueKBrfzhn3lFB7T3BlbkFJ8dVan8S3AAsrYk446_ML912PXYz-9-RZnXuwIYQ8kA", // Remplace par ta clé API sécurisée
+  apiKey: "",
   organization: "org-LaB7qbOjP1KiSkTSxDErLqTh", 
 });
 
